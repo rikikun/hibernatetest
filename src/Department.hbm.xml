@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="net.viralpatel.hibernate">
+
+	<class name="hibernatetest.Department" table="DEPARTMENT">
+
+		<id name="departmentId" type="int" column="DEPARTMENT_ID">
+			<generator class="native" />
+		</id>
+
+		<property name="dept_name" column="DEPT_NAME" />
+
+		<set name="employees" table="employee" inverse="true" lazy="true"
+			fetch="select">
+			<key>
+				<column name="DEPARTMENT_ID" not-null="true" />
+			</key>
+			<one-to-many class="hibernatetest.Employee" />
+		</set>
+
+	</class>
+</hibernate-mapping>
